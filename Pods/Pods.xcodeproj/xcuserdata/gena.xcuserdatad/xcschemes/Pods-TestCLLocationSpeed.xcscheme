@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '52EACF81E3124831CEF3A028'
+               BlueprintIdentifier = 'EC06ACEC3793FA25F3F11F7A'
                BlueprintName = 'Pods-TestCLLocationSpeed'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-TestCLLocationSpeed.a'>

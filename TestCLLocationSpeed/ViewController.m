@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) Logger *logger;
 
+@property (nonatomic, strong) NSMutableArray *speedValuesArray;
+
 @end
 
 
@@ -35,6 +37,7 @@
     
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     self.speedLabel.text = @"0 km/h";
+    self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0), @(0), @(0), @(0), @(0)]];
 }
 
 - (IBAction)buttonPressed:(UIButton *)sender {
@@ -51,9 +54,18 @@
 
 - (void)updateSpeedFromLocation:(CLLocation *)location {
     // km/h
-    double speed = location.speed * 3.6;
+    double speed = MAX(location.speed * 3.6, 0);
+    [self.speedValuesArray addObject:@(speed)];
     
-    self.speedLabel.text = [NSString stringWithFormat:@"%.2f km/h", speed];
+    int speedValuesCount = 4;
+    double speedSum = 0;
+    int allValuesCount = (int)self.speedValuesArray.count;
+    for (int i = allValuesCount - 1; i > allValuesCount - speedValuesCount; i--) {
+        speedSum += [self.speedValuesArray[i] doubleValue];
+    }
+    double result = speedSum / speedValuesCount;
+    
+    self.speedLabel.text = [NSString stringWithFormat:@"%.2f km/h", result];
 }
 
 #pragma mark - Location

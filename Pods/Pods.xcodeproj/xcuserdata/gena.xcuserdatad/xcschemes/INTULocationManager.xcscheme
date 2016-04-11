@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4D56D518BD6F7554D420D8A5'
+               BlueprintIdentifier = '324E0EB03CE20E31F0117305'
                BlueprintName = 'INTULocationManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libINTULocationManager.a'>
