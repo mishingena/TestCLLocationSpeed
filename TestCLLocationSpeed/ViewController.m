@@ -37,7 +37,7 @@
     
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     self.speedLabel.text = @"0 km/h";
-    self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0), @(0), @(0), @(0), @(0)]];
+    self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0)]];
 }
 
 - (IBAction)buttonPressed:(UIButton *)sender {
@@ -57,10 +57,11 @@
     double speed = MAX(location.speed * 3.6, 0);
     [self.speedValuesArray addObject:@(speed)];
     
-    int speedValuesCount = 4;
+    int speedValuesCount = 2;
     double speedSum = 0;
     int allValuesCount = (int)self.speedValuesArray.count;
-    for (int i = allValuesCount - 1; i > allValuesCount - speedValuesCount; i--) {
+    
+    for (int i = allValuesCount - 1; i >= allValuesCount - speedValuesCount; i--) {
         speedSum += [self.speedValuesArray[i] doubleValue];
     }
     double result = speedSum / speedValuesCount;
