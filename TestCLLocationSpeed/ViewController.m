@@ -23,6 +23,7 @@
 @property (nonatomic, strong) Logger *logger;
 
 @property (nonatomic, strong) NSMutableArray *speedValuesArray;
+@property (nonatomic) BOOL averagingEnabled;
 
 @end
 
@@ -38,6 +39,8 @@
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     self.speedLabel.text = @"0 km/h";
     self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0)]];
+    
+    self.averagingEnabled = NO;
 }
 
 - (IBAction)buttonPressed:(UIButton *)sender {
@@ -51,20 +54,27 @@
         [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
     }
 }
+- (IBAction)switchValueChanged:(UISwitch *)sender {
+    self.averagingEnabled = sender.on;
+}
 
 - (void)updateSpeedFromLocation:(CLLocation *)location {
     // km/h
     double speed = MAX(location.speed * 3.6, 0);
+    double result = speed;
+    
     [self.speedValuesArray addObject:@(speed)];
     
-    int speedValuesCount = 2;
-    double speedSum = 0;
-    int allValuesCount = (int)self.speedValuesArray.count;
-    
-    for (int i = allValuesCount - 1; i >= allValuesCount - speedValuesCount; i--) {
-        speedSum += [self.speedValuesArray[i] doubleValue];
+    if (self.averagingEnabled) {
+        int speedValuesCount = 2;
+        double speedSum = 0;
+        int allValuesCount = (int)self.speedValuesArray.count;
+        
+        for (int i = allValuesCount - 1; i >= allValuesCount - speedValuesCount; i--) {
+            speedSum += [self.speedValuesArray[i] doubleValue];
+        }
+        result = speedSum / speedValuesCount;
     }
-    double result = speedSum / speedValuesCount;
     
     self.speedLabel.text = [NSString stringWithFormat:@"%.2f km/h", result];
 }

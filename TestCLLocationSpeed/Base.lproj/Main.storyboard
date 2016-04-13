@@ -24,19 +24,48 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-gJ-G9G">
-                                <rect key="frame" x="264.5" y="279.5" width="71" height="41"/>
+                                <rect key="frame" x="264" y="279" width="71" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p5F-Ol-CDL"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-O1-hQ1">
+                                <rect key="frame" x="190" y="336" width="220" height="40"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="65s-uV-IHy">
+                                        <rect key="frame" x="163" y="4" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="c4t-C5-Cj9"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Averaging enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-xr-SMF">
+                                        <rect key="frame" x="8" y="9.5" width="151" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="65s-uV-IHy" secondAttribute="trailing" constant="8" id="1nO-Zi-S39"/>
+                                    <constraint firstItem="65s-uV-IHy" firstAttribute="centerY" secondItem="fnd-O1-hQ1" secondAttribute="centerY" id="1yJ-oC-pCs"/>
+                                    <constraint firstItem="FMQ-xr-SMF" firstAttribute="leading" secondItem="fnd-O1-hQ1" secondAttribute="leading" constant="8" id="2c1-Yn-1uW"/>
+                                    <constraint firstItem="FMQ-xr-SMF" firstAttribute="centerY" secondItem="fnd-O1-hQ1" secondAttribute="centerY" id="2tE-xE-jTX"/>
+                                    <constraint firstAttribute="height" constant="40" id="Gm5-Ah-9la"/>
+                                    <constraint firstAttribute="width" constant="220" id="KPw-K5-O32"/>
+                                    <constraint firstItem="65s-uV-IHy" firstAttribute="centerY" secondItem="FMQ-xr-SMF" secondAttribute="centerY" id="iFr-Th-FSI"/>
+                                    <constraint firstItem="65s-uV-IHy" firstAttribute="leading" secondItem="FMQ-xr-SMF" secondAttribute="trailing" constant="4" id="oDe-Zh-5Cl"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1Bo-Sl-Ue2"/>
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="8C6-Uq-vrY"/>
                             <constraint firstItem="GT6-gJ-G9G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8E0-Hf-gPV"/>
+                            <constraint firstItem="fnd-O1-hQ1" firstAttribute="top" secondItem="GT6-gJ-G9G" secondAttribute="bottom" constant="16" id="G0W-te-t1U"/>
+                            <constraint firstItem="fnd-O1-hQ1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z1J-M6-DCX"/>
                             <constraint firstItem="GT6-gJ-G9G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uOB-TR-ros"/>
                         </constraints>
                     </view>
