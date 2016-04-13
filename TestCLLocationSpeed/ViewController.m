@@ -11,19 +11,23 @@
 #import "UserLocation.h"
 #import "Logger.h"
 
-@interface ViewController ()
+@import CoreLocation;
+
+@interface ViewController () <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 
-@property (strong, nonatomic) INTULocationManager *locationManager;
-@property (nonatomic) INTULocationRequestID requestId;
+//@property (strong, nonatomic) INTULocationManager *locationManager;
+//@property (nonatomic) INTULocationRequestID requestId;
 @property (nonatomic) BOOL observingLocation;
 
 @property (nonatomic, strong) Logger *logger;
 
 @property (nonatomic, strong) NSMutableArray *speedValuesArray;
 @property (nonatomic) BOOL averagingEnabled;
+
+@property (nonatomic, strong) CLLocationManager *manager;
 
 @end
 
@@ -33,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.locationManager = [INTULocationManager sharedInstance];
+//    self.locationManager = [INTULocationManager sharedInstance];
     self.logger = [Logger new];
     
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -41,17 +45,25 @@
     self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0)]];
     
     self.averagingEnabled = NO;
+    
+    self.manager = [CLLocationManager new];
+    self.manager.delegate = self;
+    self.observingLocation = NO;
 }
 
 - (IBAction)buttonPressed:(UIButton *)sender {
     if (self.observingLocation) {
-        [self stopObservingLocation];
+//        [self stopObservingLocation];
+        [self stopTrackingLocation];
         
         [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     } else {
-        [self startObservingLocation];
+//        [self startObservingLocation];
+        [self startTrackingLocation];
         
-        [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
+        if (self.observingLocation) {
+            [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
+        }
     }
 }
 - (IBAction)switchValueChanged:(UISwitch *)sender {
@@ -81,27 +93,56 @@
 
 #pragma mark - Location
 
-- (void)startObservingLocation {
-    [self stopObservingLocation];
-    self.observingLocation = YES;
-    
-    self.requestId = [self.locationManager subscribeToLocationUpdatesWithDesiredAccuracy:INTULocationAccuracyHouse block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-        
-        UserLocation *userLocation = [UserLocation new];
-        userLocation.location = currentLocation;
-        userLocation.date = [[NSDate alloc] init];
-        
-        [self.logger addUserLocation:userLocation];
-        
-        [self updateSpeedFromLocation:currentLocation];
-    }];
+- (void)startTrackingLocation {
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        [self.manager requestAlwaysAuthorization];
+    } //else {
+    if ([CLLocationManager locationServicesEnabled]) {
+        [self.manager startUpdatingLocation];
+        self.observingLocation = YES;
+    }
+//    }
 }
 
-- (void)stopObservingLocation {
-    [self.locationManager cancelLocationRequest:self.requestId];
+- (void)stopTrackingLocation {
+    [self.manager stopUpdatingLocation];
     self.observingLocation = NO;
-    
-    [self.logger saveToFile];
 }
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *currentLocation = [locations lastObject];
+    
+    UserLocation *userLocation = [UserLocation new];
+    userLocation.location = currentLocation;
+    userLocation.date = [[NSDate alloc] init];
+
+    [self.logger addUserLocation:userLocation];
+    
+    [self updateSpeedFromLocation:currentLocation];
+}
+
+
+//- (void)startObservingLocation {
+//    [self stopObservingLocation];
+//    self.observingLocation = YES;
+//    
+//    self.requestId = [self.locationManager subscribeToLocationUpdatesWithDesiredAccuracy:INTULocationAccuracyHouse block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+//        
+//        UserLocation *userLocation = [UserLocation new];
+//        userLocation.location = currentLocation;
+//        userLocation.date = [[NSDate alloc] init];
+//        
+//        [self.logger addUserLocation:userLocation];
+//        
+//        [self updateSpeedFromLocation:currentLocation];
+//    }];
+//}
+//
+//- (void)stopObservingLocation {
+//    [self.locationManager cancelLocationRequest:self.requestId];
+//    self.observingLocation = NO;
+//    
+//    [self.logger saveToFile];
+//}
 
 @end
