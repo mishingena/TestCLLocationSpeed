@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4486798E002F853F02985861 /* libPods-TestCLLocationSpeed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7683BBE5827E4F5BEBEE0935 /* libPods-TestCLLocationSpeed.a */; };
+		B21DFBF91CBFDCB100E7E2C6 /* SpeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DFBF81CBFDCB100E7E2C6 /* SpeedViewController.m */; };
+		B21DFBFC1CBFDD7700E7E2C6 /* SpeedometerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DFBFB1CBFDD7700E7E2C6 /* SpeedometerView.m */; };
 		B293837C1CB9577700D15321 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B293837B1CB9577700D15321 /* main.m */; };
 		B293837F1CB9577700D15321 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B293837E1CB9577700D15321 /* AppDelegate.m */; };
 		B29383821CB9577700D15321 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B29383811CB9577700D15321 /* ViewController.m */; };
@@ -21,6 +23,10 @@
 /* Begin PBXFileReference section */
 		7683BBE5827E4F5BEBEE0935 /* libPods-TestCLLocationSpeed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestCLLocationSpeed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		789628171209F0638AF9B35D /* Pods-TestCLLocationSpeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestCLLocationSpeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestCLLocationSpeed/Pods-TestCLLocationSpeed.release.xcconfig"; sourceTree = "<group>"; };
+		B21DFBF71CBFDCB100E7E2C6 /* SpeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedViewController.h; sourceTree = "<group>"; };
+		B21DFBF81CBFDCB100E7E2C6 /* SpeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedViewController.m; sourceTree = "<group>"; };
+		B21DFBFA1CBFDD7700E7E2C6 /* SpeedometerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedometerView.h; sourceTree = "<group>"; };
+		B21DFBFB1CBFDD7700E7E2C6 /* SpeedometerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedometerView.m; sourceTree = "<group>"; };
 		B29383771CB9577700D15321 /* TestCLLocationSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCLLocationSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B293837B1CB9577700D15321 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B293837D1CB9577700D15321 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,6 +90,10 @@
 				B293837E1CB9577700D15321 /* AppDelegate.m */,
 				B29383801CB9577700D15321 /* ViewController.h */,
 				B29383811CB9577700D15321 /* ViewController.m */,
+				B21DFBF71CBFDCB100E7E2C6 /* SpeedViewController.h */,
+				B21DFBF81CBFDCB100E7E2C6 /* SpeedViewController.m */,
+				B21DFBFA1CBFDD7700E7E2C6 /* SpeedometerView.h */,
+				B21DFBFB1CBFDD7700E7E2C6 /* SpeedometerView.m */,
 				B29383941CB95BC400D15321 /* Logger.h */,
 				B29383951CB95BC400D15321 /* Logger.m */,
 				B29383831CB9577700D15321 /* Main.storyboard */,
@@ -234,10 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21DFBF91CBFDCB100E7E2C6 /* SpeedViewController.m in Sources */,
 				B29383821CB9577700D15321 /* ViewController.m in Sources */,
 				B29383931CB958A100D15321 /* UserLocation.m in Sources */,
 				B293837F1CB9577700D15321 /* AppDelegate.m in Sources */,
 				B293837C1CB9577700D15321 /* main.m in Sources */,
+				B21DFBFC1CBFDD7700E7E2C6 /* SpeedometerView.m in Sources */,
 				B29383961CB95BC400D15321 /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

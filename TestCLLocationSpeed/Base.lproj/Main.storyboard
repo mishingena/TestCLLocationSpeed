@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpeedTextVCStoryboardID" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -146,6 +146,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Speed View Controller-->
+        <scene sceneID="wGF-b0-GBt">
+            <objects>
+                <viewController storyboardIdentifier="SpeedVCStoryboardID" id="pFF-Jo-yhd" customClass="SpeedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EBc-kv-12x"/>
+                        <viewControllerLayoutGuide type="bottom" id="8pB-Eg-COC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kQ8-Gt-OcQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m63-9j-VbN" customClass="SpeedometerView">
+                                <rect key="frame" x="175" y="175" width="250" height="250"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="VfB-Yo-Tj3"/>
+                                    <constraint firstAttribute="width" constant="250" id="u7q-nb-aqJ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2e4-PQ-q2x">
+                                <rect key="frame" x="274" y="457" width="51" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="pFF-Jo-yhd" eventType="touchUpInside" id="4Ng-B8-cjg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taQ-7F-5Gf">
+                                <rect key="frame" x="271" y="114" width="58.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m63-9j-VbN" firstAttribute="top" secondItem="taQ-7F-5Gf" secondAttribute="bottom" constant="32" id="4Bc-St-2qu"/>
+                            <constraint firstItem="2e4-PQ-q2x" firstAttribute="top" secondItem="m63-9j-VbN" secondAttribute="bottom" constant="32" id="A6W-mo-8yG"/>
+                            <constraint firstItem="m63-9j-VbN" firstAttribute="centerX" secondItem="kQ8-Gt-OcQ" secondAttribute="centerX" id="R5r-xd-x0z"/>
+                            <constraint firstItem="2e4-PQ-q2x" firstAttribute="centerX" secondItem="kQ8-Gt-OcQ" secondAttribute="centerX" id="g7W-6a-sur"/>
+                            <constraint firstItem="taQ-7F-5Gf" firstAttribute="centerX" secondItem="kQ8-Gt-OcQ" secondAttribute="centerX" id="nNN-cQ-6TT"/>
+                            <constraint firstItem="m63-9j-VbN" firstAttribute="centerY" secondItem="kQ8-Gt-OcQ" secondAttribute="centerY" id="zSH-Ax-RYE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="2e4-PQ-q2x" id="mGl-2O-3dG"/>
+                        <outlet property="speedLabel" destination="taQ-7F-5Gf" id="ggF-49-6Lj"/>
+                        <outlet property="speedView" destination="m63-9j-VbN" id="72B-Pq-9hN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="37w-fM-R3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1519" y="374"/>
         </scene>
     </scenes>
 </document>

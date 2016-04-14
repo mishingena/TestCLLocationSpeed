@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "SpeedViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    ViewController *speedTextVC = [storyboard instantiateViewControllerWithIdentifier:SpeedTextVCStoryboardID];
+    SpeedViewController *speedVC = [storyboard instantiateViewControllerWithIdentifier:SpeedVCStoryboardID];
+    
+    UITabBarController *tabBar = [[UITabBarController alloc] init];
+    
+    UITabBarItem *firstItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
+    speedTextVC.tabBarItem = firstItem;
+    
+    UITabBarItem *secondItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:1];
+    speedVC.tabBarItem = secondItem;
+    
+    tabBar.viewControllers = @[speedTextVC, speedVC];
+    
+    
+    self.window.rootViewController = tabBar;
+    
     return YES;
 }
 
