@@ -50,7 +50,7 @@
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     self.speedLabel.text = @"0 km/h";
     self.averageSpeedLabel.text = @"0 km/h";
-    self.accelerationLabel.text = @"0";
+    self.accelerationLabel.text = @"0 km/h / sec";
     self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0)]];
     
     self.averagingEnabled = NO;
@@ -102,7 +102,8 @@
     CMAcceleration acceleration = self.motionManager.deviceMotion.userAcceleration;
     
     double result = sqrt(pow(acceleration.x, 2) + pow(acceleration.y, 2) + pow(acceleration.z, 2));
-    self.accelerationLabel.text = [NSString stringWithFormat:@"%.2f", result];
+    result *= 3.6;
+    self.accelerationLabel.text = [NSString stringWithFormat:@"%.2f km/h / sec", result];
 }
 
 - (void)updateSpeedFromLocation:(CLLocation *)location {
