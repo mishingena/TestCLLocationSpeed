@@ -24,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-gJ-G9G">
-                                <rect key="frame" x="264" y="308" width="71" height="41"/>
+                                <rect key="frame" x="264" y="384" width="71" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-O1-hQ1">
-                                <rect key="frame" x="190" y="365" width="220" height="40"/>
+                                <rect key="frame" x="190" y="441" width="220" height="40"/>
                                 <subviews>
                                     <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="65s-uV-IHy">
                                         <rect key="frame" x="163" y="4" width="51" height="31"/>
@@ -67,13 +67,25 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="379-MO-RP8">
                                 <rect key="frame" x="249" y="94" width="102" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direct speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHm-u7-Nny">
                                 <rect key="frame" x="256" y="198" width="87.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s69-V0-moM">
+                                <rect key="frame" x="261" y="260" width="77.5" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module value of acceleration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTg-Va-a1Y">
+                                <rect key="frame" x="202" y="302.5" width="197" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -81,6 +93,7 @@
                         <constraints>
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1Bo-Sl-Ue2"/>
                             <constraint firstItem="YHm-u7-Nny" firstAttribute="top" secondItem="IQY-EI-uoP" secondAttribute="bottom" constant="16" id="1bm-m4-cRp"/>
+                            <constraint firstItem="tTg-Va-a1Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7sc-Tt-iLE"/>
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="8C6-Uq-vrY"/>
                             <constraint firstItem="GT6-gJ-G9G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8E0-Hf-gPV"/>
                             <constraint firstItem="fnd-O1-hQ1" firstAttribute="top" secondItem="GT6-gJ-G9G" secondAttribute="bottom" constant="16" id="G0W-te-t1U"/>
@@ -88,14 +101,18 @@
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="top" secondItem="379-MO-RP8" secondAttribute="bottom" constant="44" id="O09-Zw-89V"/>
                             <constraint firstItem="YHm-u7-Nny" firstAttribute="top" secondItem="IQY-EI-uoP" secondAttribute="bottom" constant="4" id="R5n-U3-Wru"/>
                             <constraint firstItem="nkm-7y-KZz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Rch-Sh-VsB"/>
+                            <constraint firstItem="s69-V0-moM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S2w-Ow-Hn0"/>
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nkm-7y-KZz" secondAttribute="trailing" constant="16" id="SAm-gs-VFx"/>
                             <constraint firstItem="379-MO-RP8" firstAttribute="top" secondItem="nkm-7y-KZz" secondAttribute="bottom" constant="4" id="Sls-nN-3Rk"/>
                             <constraint firstAttribute="trailing" secondItem="IQY-EI-uoP" secondAttribute="trailing" constant="16" id="YBW-g3-UnL"/>
                             <constraint firstItem="fnd-O1-hQ1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z1J-M6-DCX"/>
                             <constraint firstItem="379-MO-RP8" firstAttribute="leading" secondItem="nkm-7y-KZz" secondAttribute="leading" id="b6l-xY-Wem"/>
+                            <constraint firstItem="tTg-Va-a1Y" firstAttribute="top" secondItem="s69-V0-moM" secondAttribute="bottom" constant="4" id="cKa-hb-T2i"/>
                             <constraint firstItem="YHm-u7-Nny" firstAttribute="trailing" secondItem="IQY-EI-uoP" secondAttribute="trailing" id="dD5-3q-gK8"/>
                             <constraint firstItem="379-MO-RP8" firstAttribute="top" secondItem="nkm-7y-KZz" secondAttribute="bottom" constant="16" id="dwK-ha-G6r"/>
                             <constraint firstItem="nkm-7y-KZz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="gXS-qi-9t0"/>
+                            <constraint firstItem="s69-V0-moM" firstAttribute="top" secondItem="YHm-u7-Nny" secondAttribute="bottom" constant="44" id="ish-1c-lBp"/>
+                            <constraint firstItem="GT6-gJ-G9G" firstAttribute="top" secondItem="tTg-Va-a1Y" secondAttribute="bottom" constant="64" id="ny4-Ms-cdd"/>
                             <constraint firstItem="IQY-EI-uoP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="on5-uQ-27l"/>
                             <constraint firstItem="nkm-7y-KZz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sLz-n1-d6c"/>
                             <constraint firstItem="nkm-7y-KZz" firstAttribute="baseline" secondItem="IQY-EI-uoP" secondAttribute="baseline" id="u8a-nR-5Rt"/>
@@ -105,10 +122,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="b6l-xY-Wem"/>
-                                <exclude reference="dwK-ha-G6r"/>
                                 <exclude reference="Rch-Sh-VsB"/>
                                 <exclude reference="u8a-nR-5Rt"/>
+                                <exclude reference="b6l-xY-Wem"/>
+                                <exclude reference="dwK-ha-G6r"/>
                                 <exclude reference="1Bo-Sl-Ue2"/>
                                 <exclude reference="8C6-Uq-vrY"/>
                                 <exclude reference="SAm-gs-VFx"/>
@@ -116,10 +133,12 @@
                                 <exclude reference="1bm-m4-cRp"/>
                                 <exclude reference="dD5-3q-gK8"/>
                                 <exclude reference="8E0-Hf-gPV"/>
+                                <exclude reference="vUK-EE-1xj"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="accelerationLabel" destination="s69-V0-moM" id="qpA-N9-t60"/>
                         <outlet property="averageSpeedLabel" destination="nkm-7y-KZz" id="aOb-by-Wcb"/>
                         <outlet property="speedLabel" destination="IQY-EI-uoP" id="aRA-MT-lV1"/>
                         <outlet property="startStopButton" destination="GT6-gJ-G9G" id="jNu-Jg-Rq2"/>

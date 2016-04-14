@@ -12,11 +12,15 @@
 #import "Logger.h"
 
 @import CoreLocation;
+@import CoreMotion;
+
+#define kCMDeviceMotionUpdateFrequency (1.f/30.f)
 
 @interface ViewController () <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *averageSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *accelerationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 
 //@property (strong, nonatomic) INTULocationManager *locationManager;
@@ -29,6 +33,8 @@
 @property (nonatomic) BOOL averagingEnabled;
 
 @property (nonatomic, strong) CLLocationManager *manager;
+@property (nonatomic, strong) CMMotionManager *motionManager;
+@property (nonatomic, strong) CADisplayLink *displayLink;
 
 @end
 
@@ -44,13 +50,23 @@
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     self.speedLabel.text = @"0 km/h";
     self.averageSpeedLabel.text = @"0 km/h";
+    self.accelerationLabel.text = @"0";
     self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0)]];
     
     self.averagingEnabled = NO;
     
     self.manager = [CLLocationManager new];
     self.manager.delegate = self;
+    self.manager.activityType = CLActivityTypeAutomotiveNavigation;
+    self.manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.observingLocation = NO;
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.deviceMotionUpdateInterval = kCMDeviceMotionUpdateFrequency;
+    
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateMotionData)];
+
+//    self.motionManager
 }
 
 - (IBAction)buttonPressed:(UIButton *)sender {
@@ -58,10 +74,20 @@
 //        [self stopObservingLocation];
         [self stopTrackingLocation];
         
+        if ([CMMotionActivityManager isActivityAvailable]) {
+            [self.motionManager stopDeviceMotionUpdates];
+            [self.displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        }
+        
         [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     } else {
 //        [self startObservingLocation];
         [self startTrackingLocation];
+        
+        if ([CMMotionActivityManager isActivityAvailable]) {
+            [self.motionManager startDeviceMotionUpdates];
+            [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        }
         
         if (self.observingLocation) {
             [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
@@ -70,6 +96,13 @@
 }
 - (IBAction)switchValueChanged:(UISwitch *)sender {
     self.averagingEnabled = sender.on;
+}
+
+- (void)updateMotionData {
+    CMAcceleration acceleration = self.motionManager.deviceMotion.userAcceleration;
+    
+    double result = sqrt(pow(acceleration.x, 2) + pow(acceleration.y, 2) + pow(acceleration.z, 2));
+    self.accelerationLabel.text = [NSString stringWithFormat:@"%.2f", result];
 }
 
 - (void)updateSpeedFromLocation:(CLLocation *)location {
