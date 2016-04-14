@@ -16,6 +16,7 @@
 @interface ViewController () <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *averageSpeedLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 
 //@property (strong, nonatomic) INTULocationManager *locationManager;
@@ -42,6 +43,7 @@
     
     [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
     self.speedLabel.text = @"0 km/h";
+    self.averageSpeedLabel.text = @"0 km/h";
     self.speedValuesArray = [NSMutableArray arrayWithArray:@[@(0)]];
     
     self.averagingEnabled = NO;
@@ -77,7 +79,7 @@
     
     [self.speedValuesArray addObject:@(speed)];
     
-    if (self.averagingEnabled) {
+//    if (self.averagingEnabled) {
         int speedValuesCount = 2;
         double speedSum = 0;
         int allValuesCount = (int)self.speedValuesArray.count;
@@ -85,9 +87,9 @@
         for (int i = allValuesCount - 1; i >= allValuesCount - speedValuesCount; i--) {
             speedSum += [self.speedValuesArray[i] doubleValue];
         }
-        result = speedSum / speedValuesCount;
-    }
-    
+        double averageResult = speedSum / speedValuesCount;
+//    }
+    self.averageSpeedLabel.text = [NSString stringWithFormat:@"%.2f km/h", averageResult];
     self.speedLabel.text = [NSString stringWithFormat:@"%.2f km/h", result];
 }
 
