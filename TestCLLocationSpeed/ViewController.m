@@ -103,7 +103,7 @@
     
     double result = sqrt(pow(acceleration.x, 2) + pow(acceleration.y, 2) + pow(acceleration.z, 2));
     result *= 3.6;
-    self.accelerationLabel.text = [NSString stringWithFormat:@"%.2f km/h / sec", result];
+    self.accelerationLabel.text = [NSString stringWithFormat:@"%.1f km/h / sec", result];
 }
 
 - (void)updateSpeedFromLocation:(CLLocation *)location {
@@ -123,8 +123,8 @@
         }
         double averageResult = speedSum / speedValuesCount;
 //    }
-    self.averageSpeedLabel.text = [NSString stringWithFormat:@"%.2f km/h", averageResult];
-    self.speedLabel.text = [NSString stringWithFormat:@"%.2f km/h", result];
+    self.averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f km/h", averageResult];
+    self.speedLabel.text = [NSString stringWithFormat:@"%.1f km/h", result];
 }
 
 #pragma mark - Location
