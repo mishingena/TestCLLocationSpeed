@@ -22,6 +22,8 @@
 
 @property (nonatomic) BOOL observingLocation;
 
+@property (nonatomic) CGFloat speed;
+
 @end
 
 
@@ -38,6 +40,8 @@
     self.manager.activityType = CLActivityTypeAutomotiveNavigation;
     self.manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.observingLocation = NO;
+    
+    self.speed = 0;
 }
 
 - (CGFloat)angleWithSpeed:(CGFloat)speed {
@@ -59,7 +63,17 @@
 }
 
 - (void)updateSpeedFromLocation:(CLLocation *)location {
-    // km/h
+    
+//    int val = arc4random_uniform(2) - 1;
+//    if (val == 0) {
+//        val++;
+//    }
+//    
+////    self.speed += 2.0 * val;
+//    self.speed += 2.0;
+    
+//    CGFloat speed = self.speed;
+//     km/h
     CGFloat speed = MAX(location.speed * 3.6, 0);
     
     self.speedLabel.text = [NSString stringWithFormat:@"%.1f km/h", speed];
@@ -85,6 +99,15 @@
 - (void)stopTrackingLocation {
     [self.manager stopUpdatingLocation];
     self.observingLocation = NO;
+    
+//    self.speed = 0;
+//    CGFloat speed = self.speed;
+//    
+//    self.speedLabel.text = [NSString stringWithFormat:@"%.1f km/h", speed];
+    
+    CGFloat angle = DEGREES_TO_RADIANS([self angleWithSpeed:0]);
+    [self.speedView rotateSpeedLineToAngle:angle];
+    
 //    [self.speedView stopDamping];
 }
 

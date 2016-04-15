@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-static CGFloat const SpeedLineStartAngle = 30.0;
+static CGFloat const SpeedLineStartAngle = 60.0;
 
 @interface SpeedometerView : UIView
 

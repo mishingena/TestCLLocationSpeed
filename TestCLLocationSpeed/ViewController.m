@@ -14,7 +14,7 @@
 @import CoreLocation;
 @import CoreMotion;
 
-#define kCMDeviceMotionUpdateFrequency (1.f/30.f)
+#define kCMDeviceMotionUpdateFrequency (1.f/1.f)
 
 @interface ViewController () <CLLocationManagerDelegate>
 

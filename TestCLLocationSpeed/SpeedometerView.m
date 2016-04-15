@@ -160,15 +160,15 @@ CGFloat const SpeedLineRadiusOffset = -76.0;
     [self addSubview:label];
 }
 
-- (CGFloat)widthOfString:(NSString *)string withFont:(NSFont *)font {
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
-    return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
-}
-
-- (CGFloat)heightOfString:(NSString *)string withFont:(NSFont *)font {
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
-    return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].height;
-}
+//- (CGFloat)widthOfString:(NSString *)string withFont:(NSFont *)font {
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+//    return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
+//}
+//
+//- (CGFloat)heightOfString:(NSString *)string withFont:(NSFont *)font {
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+//    return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].height;
+//}
 
 - (void)addSpeedLineWithRadius:(CGFloat)radius angle:(CGFloat)angle {
     CGFloat x = self.centerPoint.x + radius * cos(angle);
@@ -193,8 +193,6 @@ CGFloat const SpeedLineRadiusOffset = -76.0;
     self.speedLine2 = view2;
     
 //    self.speedLine2.hidden = YES;
-    
-    
     
     
 //    frame.origin.x = self.centerPoint.x - width/2;
@@ -222,7 +220,7 @@ CGFloat const SpeedLineRadiusOffset = -76.0;
     self.speedLine2.backgroundColor = [UIColor redColor];
 //
     view.transform = CGAffineTransformRotate(CGAffineTransformIdentity, angle);
-    view2.transform = CGAffineTransformRotate(CGAffineTransformIdentity, angle);
+//    view2.transform = CGAffineTransformRotate(CGAffineTransformIdentity, angle);
     
     // to rerender and apply filters
     self.speedLine.layer.shouldRasterize = YES;
@@ -230,26 +228,26 @@ CGFloat const SpeedLineRadiusOffset = -76.0;
     self.contentMode = UIViewContentModeRedraw;
 }
 
+- (void)rotateSpeedLineToAngle:(CGFloat)toAngle {
+    [self rotateSpeedLineFromAngle:self.speedLineAngle toAngle:toAngle];
+}
+
 - (void)rotateSpeedLineFromAngle:(CGFloat)fromAngle toAngle:(CGFloat)toAngle {
     
+    [self.speedLine.layer removeAnimationForKey:@"rotationAnimation"];
+    
+    if (self.rotationAnimation) {
+        self.rotationAnimation.toValue = [NSNumber numberWithFloat:toAngle];
+        self.rotationAnimation.fromValue = [NSNumber numberWithFloat:fromAngle];
+        
+        self.speedLineAngle = toAngle;
+        
+        [self.speedLine.layer addAnimation:self.rotationAnimation forKey:@"rotationAnimation"];
+        
+        return;
+    }
+    
     CGFloat duration = 1;
-    
-//    if (self.rotationAnimation) {
-//        self.rotationAnimation.toValue = [NSNumber numberWithFloat:toAngle];
-//        self.rotationAnimation.fromValue = [NSNumber numberWithFloat:fromAngle];
-//        
-////        [self.rotationAnimation ]
-//        return;
-//    }
-    
-//    CABasicAnimation* rotationAnimation;
-//    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//    rotationAnimation.toValue = [NSNumber numberWithFloat:toAngle];
-//    rotationAnimation.fromValue = [NSNumber numberWithFloat:fromAngle];
-//    rotationAnimation.duration = duration;
-//    rotationAnimation.repeatCount = 0;
-//    rotationAnimation.fillMode = kCAFillModeForwards;
-//    rotationAnimation.removedOnCompletion = NO;
     
     CASpringAnimation *springAnimation = [CASpringAnimation animationWithKeyPath:@"transform.rotation.z"];
     springAnimation.toValue = [NSNumber numberWithFloat:toAngle];
@@ -278,7 +276,7 @@ CGFloat const SpeedLineRadiusOffset = -76.0;
     
     CGFloat fromFalue; //= self.speedLine.layer.presentationLayer
 //    if (!self.dampingAnimation) {
-        fromFalue = SpeedLineStartAngle-byValue;
+    fromFalue = 0-byValue;
         
 //    } else {
 //        fromFalue = [self.dampingAnimation.toValue floatValue];
@@ -301,10 +299,6 @@ CGFloat const SpeedLineRadiusOffset = -76.0;
     [self.speedLine2.layer addAnimation:springAnimation forKey:@"speedLineDampingAnimation"];
     
     self.dampingAnimation = springAnimation;
-}
-
-- (void)rotateSpeedLineToAngle:(CGFloat)toAngle {
-    [self rotateSpeedLineFromAngle:self.speedLineAngle toAngle:toAngle];
 }
 
 - (void)stopDamping {
